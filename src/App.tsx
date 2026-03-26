@@ -16,6 +16,7 @@ import {
   Sparkles,
   Flower2
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 // Use URL() so TypeScript doesn't need special static-asset module resolution.
 // Vite will still bundle the image correctly.
@@ -616,6 +617,7 @@ const App: React.FC = () => {
             <p className="text-maroon/60 font-serif italic">Created with love by Nehaar</p>
           </footer>
         </motion.div>
+      <Analytics />
     </div>
   );
 };
