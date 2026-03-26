@@ -17,6 +17,11 @@ import {
   Flower2
 } from 'lucide-react';
 
+// Use URL() so TypeScript doesn't need special static-asset module resolution.
+// Vite will still bundle the image correctly.
+const gopalImg = new URL('../photos/Gopal.jpg', import.meta.url).toString();
+const sravyaImg = new URL('../photos/Sravya.jpg', import.meta.url).toString();
+
 // --- Components ---
 
 const PetalRain = () => {
@@ -405,7 +410,7 @@ const App: React.FC = () => {
             </div>
             
             <div className="max-w-6xl mx-auto">
-              <SectionTitle>The Bride & Groom</SectionTitle>
+              <SectionTitle>The Groom & Bride</SectionTitle>
               
               <div className="grid md:grid-cols-2 gap-16 items-center">
                 {/* Groom */}
@@ -419,9 +424,9 @@ const App: React.FC = () => {
                     <div className="royal-frame">
                       <div className="w-64 h-80 md:w-80 md:h-96 overflow-hidden relative z-0">
                         <img 
-                          src=".\photos\Gopal.jpg" 
+                          src={gopalImg}
                           alt="Groom" 
-                          className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                          className="w-full h-full object-cover transition-all duration-700"
                           referrerPolicy="no-referrer"
                         />
                       </div>
@@ -433,7 +438,7 @@ const App: React.FC = () => {
                   <h3 className="text-5xl font-display text-maroon mb-4 tracking-wider">Gopal</h3>
                   <div className="space-y-2">
                     <p className="font-serif italic text-gold text-xl">Son of</p>
-                    <p className="font-display text-gray-800 text-lg">
+                    <p className="font-display text-maroon text-lg leading-relaxed">
                       Sri. Sigireddy Venkata Rameswara Rao<br />
                       & <br />
                       Smt. Anantha Rama Lakshmi Devi
@@ -452,9 +457,9 @@ const App: React.FC = () => {
                     <div className="royal-frame">
                       <div className="w-64 h-80 md:w-80 md:h-96 overflow-hidden relative z-0">
                         <img 
-                          src=".\photos\Sravya.jpg" 
+                          src={sravyaImg}
                           alt="Bride" 
-                          className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+                          className="w-full h-full object-cover transition-all duration-700"
                           referrerPolicy="no-referrer"
                         />
                       </div>
@@ -466,7 +471,7 @@ const App: React.FC = () => {
                   <h3 className="text-5xl font-display text-maroon mb-4 tracking-wider">Jaya Sravya</h3>
                   <div className="space-y-2">
                     <p className="font-serif italic text-gold text-xl">Daughter of</p>
-                    <p className="font-display text-gray-800 text-lg">
+                    <p className="font-display text-maroon text-lg leading-relaxed">
                     Sri. Routhu Ravi Sangha Maheswara Rao <br />
                     & <br />
                     Smt. Rama Devi
@@ -486,7 +491,7 @@ const App: React.FC = () => {
                 {[
                   {
                     title: "Sumuhurtham",
-                    time: "Wednesday, April 1st, 09:44 hrs",
+                    time: "Wednesday, April 1st | 09:44 PM",
                     icon: Clock,
                   },
                   {
