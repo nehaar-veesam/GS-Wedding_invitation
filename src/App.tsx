@@ -321,6 +321,8 @@ const App: React.FC = () => {
   const [isOpened, setIsOpened] = useState(false);
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const venueAddress = "Simba Resorts, Near Pendurthi Fly Over, Kothavalasa Road, Visakhapatnam";
+  const directionsUrl = "https://maps.app.goo.gl/L9ngQW4KH8qbDku69";
 
   return (
     <div className={`min-h-screen font-sans selection:bg-gold/30 ${!isOpened ? 'h-screen overflow-hidden' : ''}`}>
@@ -417,7 +419,7 @@ const App: React.FC = () => {
                     <div className="royal-frame">
                       <div className="w-64 h-80 md:w-80 md:h-96 overflow-hidden relative z-0">
                         <img 
-                          src="https://picsum.photos/seed/groom/800/1000" 
+                          src=".\photos\Gopal.jpg" 
                           alt="Groom" 
                           className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                           referrerPolicy="no-referrer"
@@ -431,7 +433,11 @@ const App: React.FC = () => {
                   <h3 className="text-5xl font-display text-maroon mb-4 tracking-wider">Gopal</h3>
                   <div className="space-y-2">
                     <p className="font-serif italic text-gold text-xl">Son of</p>
-                    <p className="font-display text-gray-800 text-lg">Mr. Venkatesh & Mrs. Lakshmi</p>
+                    <p className="font-display text-gray-800 text-lg">
+                      Sri. Sigireddy Venkata Rameswara Rao<br />
+                      & <br />
+                      Smt. Anantha Rama Lakshmi Devi
+                    </p>
                   </div>
                 </motion.div>
 
@@ -446,7 +452,7 @@ const App: React.FC = () => {
                     <div className="royal-frame">
                       <div className="w-64 h-80 md:w-80 md:h-96 overflow-hidden relative z-0">
                         <img 
-                          src="https://picsum.photos/seed/bride/800/1000" 
+                          src=".\photos\Sravya.jpg" 
                           alt="Bride" 
                           className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                           referrerPolicy="no-referrer"
@@ -457,10 +463,14 @@ const App: React.FC = () => {
                       <span className="font-display text-3xl">S</span>
                     </div>
                   </div>
-                  <h3 className="text-5xl font-display text-maroon mb-4 tracking-wider">Sravya</h3>
+                  <h3 className="text-5xl font-display text-maroon mb-4 tracking-wider">Jaya Sravya</h3>
                   <div className="space-y-2">
                     <p className="font-serif italic text-gold text-xl">Daughter of</p>
-                    <p className="font-display text-gray-800 text-lg">Mr. Rajasekhar & Mrs. Padmavathi</p>
+                    <p className="font-display text-gray-800 text-lg">
+                    Sri. Routhu Ravi Sangha Maheswara Rao <br />
+                    & <br />
+                    Smt. Rama Devi
+                  </p>
                   </div>
                 </motion.div>
               </div>
@@ -476,21 +486,18 @@ const App: React.FC = () => {
                 {[
                   {
                     title: "Sumuhurtham",
-                    time: "10:30 AM",
+                    time: "Wednesday, April 1st, 09:44 hrs",
                     icon: Clock,
-                    desc: "The sacred union under divine stars"
                   },
                   {
                     title: "Venue",
-                    time: "Grand Plaza",
+                    time: venueAddress,
                     icon: MapPin,
-                    desc: "Royal Heritage Gardens, Hyderabad"
                   },
                   {
                     title: "Dinner",
-                    time: "7:00 PM onwards",
+                    time: "7:00 PM onwards at Marriage Venue",
                     icon: Utensils,
-                    desc: "A feast of traditional flavors"
                   }
                 ].map((event, idx) => (
                   <motion.div
@@ -506,20 +513,23 @@ const App: React.FC = () => {
                     </div>
                     <h4 className="text-2xl font-display text-maroon mb-2">{event.title}</h4>
                     <p className="text-gold font-serif italic mb-4">{event.time}</p>
-                    <p className="text-gray-600 text-sm">{event.desc}</p>
+                    {/* <p className="text-gray-600 text-sm">{event.desc}</p> */}
                   </motion.div>
                 ))}
               </div>
 
               <div className="mt-16 text-center">
-                <motion.button
+                <motion.a
+                  href={directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="px-8 py-4 bg-maroon text-soft-gold rounded-full font-display tracking-widest shadow-lg flex items-center gap-3 mx-auto"
+                  className="inline-flex no-underline px-8 py-4 bg-maroon text-soft-gold rounded-full font-display tracking-widest shadow-lg items-center gap-3"
                 >
                   <MapPin className="w-5 h-5" />
                   GET DIRECTIONS
-                </motion.button>
+                </motion.a>
               </div>
             </div>
           </section>
@@ -558,7 +568,7 @@ const App: React.FC = () => {
 
           {/* Footer */}
           <footer className="py-8 text-center bg-cream border-t border-gold/10">
-            <p className="text-maroon/60 font-serif italic">Created with love for a beautiful beginning</p>
+            <p className="text-maroon/60 font-serif italic">Created with love by Nehaar</p>
           </footer>
         </motion.div>
     </div>
