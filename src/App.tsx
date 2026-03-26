@@ -19,8 +19,8 @@ import {
 
 // Use URL() so TypeScript doesn't need special static-asset module resolution.
 // Vite will still bundle the image correctly.
-const gopalImg = new URL('../photos/Gopal.jpg', import.meta.url).toString();
-const sravyaImg = new URL('../photos/Sravya.jpg', import.meta.url).toString();
+const gopalImg = new URL('../photos/Gopal-web.jpg', import.meta.url).toString();
+const sravyaImg = new URL('../photos/Sravya-web.jpg', import.meta.url).toString();
 
 // --- Components ---
 
@@ -105,7 +105,7 @@ const CurtainReveal = ({ onReveal }: { onReveal: () => void }) => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.1 }}
-            transition={{ duration: 1.5 }}
+            transition={{ duration: 1.1 }}
             className="absolute inset-0 z-[110] flex flex-col items-center justify-center pointer-events-none px-4"
           >
             <div className="text-center bg-black/20 backdrop-blur-sm p-12 rounded-full border border-gold/20">
@@ -114,7 +114,7 @@ const CurtainReveal = ({ onReveal }: { onReveal: () => void }) => {
               </div>
               <motion.div
                 animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                transition={{ duration: 1, repeat: Infinity }}
                 className="text-gold font-sans text-sm tracking-[0.4em] uppercase"
               >
                 Tap to Open
