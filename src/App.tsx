@@ -292,7 +292,7 @@ const ScratchDate = () => {
           <span className="text-xs font-display text-gold tracking-widest">DAY</span>
         </div>
         <div className="flex flex-col items-center gap-4">
-          <ScratchCircle value="4" onReveal={handleReveal} />
+          <ScratchCircle value="April" onReveal={handleReveal} />
           <span className="text-xs font-display text-gold tracking-widest">MONTH</span>
         </div>
         <div className="flex flex-col items-center gap-4">
@@ -316,7 +316,6 @@ const ScratchDate = () => {
             >
               APRIL 1<span className="text-xl md:text-3xl self-start mt-2 md:mt-4 ml-1">st</span> 2026
             </motion.div>
-            <p className="font-serif italic text-gold text-xl">1 - 4 - 2026</p>
             <p className="font-serif italic text-gold text-lg mt-4">
               {daysToGo} day{daysToGo === 1 ? '' : 's'} to go...
             </p>
