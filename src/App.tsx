@@ -244,8 +244,40 @@ const ScratchCircle = ({ value, onReveal }: { value: string; onReveal: () => voi
 const ScratchDate = () => {
   const [revealedCount, setRevealedCount] = useState(0);
   const isAllRevealed = revealedCount >= 3;
+  const weddingMonthIndex = 3; // April (0-based)
+  const weddingDayOfMonth = 1;
+  const weddingYear = 2026;
+
+  const calcDaysToGo = () => {
+    // IST is UTC+05:30 (no DST). Compute "midnight" in IST using epoch math,
+    // so the result is consistent even if the user is in another timezone.
+    const IST_OFFSET_MS = 5.5 * 60 * 60 * 1000; // 19,800,000
+    const DAY_MS = 24 * 60 * 60 * 1000;
+
+    const nowUTC = Date.now();
+
+    // Convert current time to "IST clock" by adding offset, then floor to IST midnight.
+    const istNow = nowUTC + IST_OFFSET_MS;
+    const istMidnightEpoch = Math.floor(istNow / DAY_MS) * DAY_MS;
+    const nowMidnightUTC = istMidnightEpoch - IST_OFFSET_MS;
+
+    // Target date at IST midnight -> convert that IST midnight to UTC epoch.
+    const targetISTMidnightUTC =
+      Date.UTC(weddingYear, weddingMonthIndex, weddingDayOfMonth, 0, 0, 0, 0) - IST_OFFSET_MS;
+
+    const diffDays = Math.round((targetISTMidnightUTC - nowMidnightUTC) / DAY_MS);
+    return Math.max(0, diffDays);
+  };
+
+  const [daysToGo, setDaysToGo] = useState<number>(calcDaysToGo);
 
   const handleReveal = () => setRevealedCount(prev => prev + 1);
+
+  useEffect(() => {
+    // Refresh countdown periodically in case the user keeps the tab open.
+    const id = window.setInterval(() => setDaysToGo(calcDaysToGo()), 60 * 1000);
+    return () => window.clearInterval(id);
+  }, []);
 
   return (
     <div className="relative w-full max-w-2xl mx-auto py-12 px-4 bg-maroon/5 rounded-[3rem] border-2 border-gold/20 shadow-xl overflow-hidden">
@@ -285,20 +317,13 @@ const ScratchDate = () => {
               APRIL 1<span className="text-xl md:text-3xl self-start mt-2 md:mt-4 ml-1">st</span> 2026
             </motion.div>
             <p className="font-serif italic text-gold text-xl">1 - 4 - 2026</p>
+            <p className="font-serif italic text-gold text-lg mt-4">
+              {daysToGo} day{daysToGo === 1 ? '' : 's'} to go...
+            </p>
             <Sparkles className="text-gold mx-auto mt-6 animate-pulse" />
           </motion.div>
         )}
       </AnimatePresence>
-
-      {!isAllRevealed && (
-        <motion.div
-          animate={{ opacity: [0.4, 1, 0.4] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="text-center text-maroon/40 font-sans text-xs tracking-[0.3em] uppercase mt-8"
-        >
-          {3 - revealedCount} more to go...
-        </motion.div>
-      )}
     </div>
   );
 };
