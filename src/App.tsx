@@ -353,6 +353,7 @@ const App: React.FC = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const venueAddress = "Simba Resorts, Near Pendurthi Fly Over, Kothavalasa Road, Visakhapatnam";
   const directionsUrl = "https://maps.app.goo.gl/L9ngQW4KH8qbDku69";
+  const heroBgImg = new URL('../photos/bg.jpg', import.meta.url).toString();
 
   return (
     <div className={`min-h-screen font-sans selection:bg-gold/30 ${!isOpened ? 'h-screen overflow-hidden' : ''}`}>
@@ -365,8 +366,19 @@ const App: React.FC = () => {
         <PetalRain />
 
           {/* Hero Section */}
-          <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[url('https://picsum.photos/seed/wedding-bg/1920/1080?blur=5')] bg-cover bg-center">
-            <div className="absolute inset-0 bg-cream/80 backdrop-blur-sm" />
+          <section className="relative h-screen flex items-center justify-center overflow-hidden">
+            {/* Blurred background image layer */}
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${heroBgImg})`,
+                filter: 'blur(4px) brightness(1.24) contrast(0.95) saturate(1.1)',
+                transform: 'scale(1.08)',
+              }}
+            />
+            {/* Warm overlay: light + golden for readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-cream/70 via-cream/35 to-cream/25" />
+            <div className="absolute inset-0 bg-gold/10" />
             
             <motion.div 
               style={{ opacity }}
@@ -394,7 +406,7 @@ const App: React.FC = () => {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="font-display text-gold text-xl md:text-2xl tracking-[0.4em] mb-6"
+                className="font-display text-deep-red text-xl md:text-2xl tracking-[0.4em] mb-6 drop-shadow-[0_4px_10px_rgba(0,0,0,0.25)]"
               >
                 INVITING FOR THE WEDDING OF
               </motion.p>
@@ -403,9 +415,13 @@ const App: React.FC = () => {
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.8 }}
-                className="text-6xl md:text-9xl font-display text-maroon mb-8 leading-tight"
+                className="text-6xl md:text-9xl font-display text-maroon mb-8 leading-tight drop-shadow-[0_4px_12px_rgba(128,0,0,0.35)]"
               >
-                Gopal <span className="text-gold font-script text-5xl md:text-7xl block md:inline">&</span> Sravya
+                Gopal{' '}
+                <span className="text-soft-gold font-script text-5xl md:text-7xl block md:inline drop-shadow-[0_4px_10px_rgba(0,0,0,0.25)]">
+                  &
+                </span>{' '}
+                Sravya
               </motion.h1>
 
               <motion.div
